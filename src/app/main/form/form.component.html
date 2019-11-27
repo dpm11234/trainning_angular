@@ -1,0 +1,402 @@
+<div class="main bg-gradient-dark">
+  <div class="container">
+    <h1 class="text-center">Checkout Form</h1>
+    <p class="text-center">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat est
+      corporis atque harum asperiores dolores corrupti, excepturi saepe soluta
+      doloribus facere aspernatur molestias! A odit maiores atque, nesciunt
+      sequi, reiciendis corporis alias architecto voluptates quidem esse quos
+      ipsum iste neque!
+    </p>
+
+    <div class="row">
+      <div class="col-8">
+        <h4>Billing address</h4>
+      </div>
+      <div class="col-4">
+        <div class="d-flex justify-content-between">
+          <h4>Your Card</h4>
+          <div
+            style="width: 30px; height: 30px;"
+            class="rounded-circle bg-secondary text-center text-white font-weight-bold"
+          >
+            3
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-8">
+        <form [formGroup]="billForm" (ngSubmit)="onSubmitForm()" >
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputFirstName">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputFirstName"
+                placeholder="First Name"
+                formControlName="firstName"
+              />
+              <div
+                *ngIf="
+                  firstName.invalid &&
+                  (firstName.dirty || billForm.get('firstName').touched)
+                "
+                class="text-danger"
+              >
+                <div *ngIf="firstName.hasError('required')">
+                  First name is required
+                </div>
+                <div *ngIf="firstName.hasError('minlength')">
+                  First name must be at least 3 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputLastName">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputLastName"
+                placeholder="Last Name"
+                formControlName="lastName"
+              />
+              <div
+                *ngIf="
+                  lastName.invalid &&
+                  (lastName.dirty || billForm.get('lastName').touched)
+                "
+                class="text-danger"
+              >
+                <div *ngIf="lastName.hasError('required')">
+                  Last name is required
+                </div>
+                <div *ngIf="lastName.hasError('minlength')">
+                  Last name must be at least 3 characters
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="Username">Username</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">@</div>
+              </div>
+              <input
+                formControlName="username"
+                type="text"
+                class="form-control"
+                id="Username"
+                placeholder="Username"
+              />
+            </div>
+            <div
+              *ngIf="username.invalid && (username.dirty || username.touched)"
+              class="text-danger"
+            >
+              username is required
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input
+              formControlName="email"
+              type="text"
+              class="form-control"
+              id="inputEmail"
+              placeholder="Email"
+            />
+            <div
+              *ngIf="email.invalid && (email.touched || email.dirty)"
+              class="text-danger"
+            >
+              <div *ngIf="email.hasError('required')">
+                Email is required
+              </div>
+              <div *ngIf="email.hasError('email')">
+                Email invalid
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input
+              formControlName="address"
+              type="text"
+              class="form-control"
+              id="inputAddress"
+              placeholder="1234 Main St"
+            />
+            <div
+              *ngIf="address.invalid && (address.dirty || address.touched)"
+              class="text-danger"
+            >
+              address is required
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input
+              formControlName="address2"
+              type="text"
+              class="form-control"
+              id="inputAddress2"
+              placeholder="Apartment, studio, or floor"
+            />
+            <div
+              *ngIf="address2.invalid && (address2.dirty || address2.touched)"
+              class="text-danger"
+            >
+              address2 is required
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCountry">Country</label>
+              <select id="inputCountry" class="form-control">
+                <option selected>Choose...</option>
+                <option>Ho Chi Minh</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState">State</label>
+              <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="inputZip">Zip</label>
+              <input
+                formControlName="zipCode"
+                type="text"
+                class="form-control"
+                id="inputZip"
+              />
+              <div
+                *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)"
+                class="text-danger"
+              >
+                zip code is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group border-top border-bottom py-4 my-3">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck" />
+              <label class="form-check-label" for="gridCheck">
+                Shipping address is the same as my billing address
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck" />
+              <label class="form-check-label" for="gridCheck">
+                Save this information for next time
+              </label>
+            </div>
+          </div>
+          <h1>Payment</h1>
+          <div class="form-group">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gridRadios"
+                id="idCreditCard"
+                value="Credit card"
+                checked
+              />
+              <label class="form-check-label" for="idCreditCard">
+                Credit card
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gridRadios"
+                id="idDebitCard"
+                value="Debit card"
+              />
+              <label class="form-check-label" for="idDebitCard">
+                Debit card
+              </label>
+            </div>
+            <div class="form-check disabled">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gridRadios"
+                id="idPalpay"
+                value="Paypal"
+              />
+              <label class="form-check-label" for="idPalpay">
+                Paypal
+              </label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="idNameOnCard">Name On Card</label>
+              <input
+                formControlName="nameOnCard"
+                type="text"
+                class="form-control"
+                id="idNameOnCard"
+                placeholder="Name On Card"
+              />
+              <label class="font-weight-light text-muted"
+                >Full name as displayed on card</label
+              >
+              <div
+                *ngIf="
+                  nameOnCard.invalid && (nameOnCard.dirty || nameOnCard.touched)
+                "
+                class="text-danger"
+              >
+                Name on card is required
+              </div>
+            </div>
+            <div class="form-group col">
+              <label for="idCardNumber">Credit card number</label>
+              <input
+                formControlName="cardNumber"
+                type="text"
+                class="form-control"
+                id="idCardNumber"
+                placeholder="Credit card number"
+              />
+              <div
+                *ngIf="
+                  cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)
+                "
+                class="text-danger"
+              >
+                Card number is required
+              </div>
+            </div>
+          </div>
+          <div class="form-row border-bottom my-3">
+            <div class="col-6">
+              <div class="form-row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="Expiration">Expiration</label>
+                    <input
+                      formControlName="expiration"
+                      type="text"
+                      class="form-control"
+                      id="Expiration"
+                      placeholder="Expiration"
+                    />
+                    <div
+                      *ngIf="
+                        expiration.invalid &&
+                        (expiration.dirty || expiration.touched)
+                      "
+                      class="text-danger"
+                    >
+                      Expiration is required
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="CVV">CVV</label>
+                    <input
+                      formControlName="cvvNumber"
+                      type="text"
+                      class="form-control"
+                      id="CVV"
+                      placeholder="CVV"
+                    />
+                    <div
+                      *ngIf="
+                        cvvNumber.invalid &&
+                        (cvvNumber.dirty || cvvNumber.touched)
+                      "
+                      class="text-danger"
+                    >
+                      CVV is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button [disabled]="billForm.invalid" class="btn btn-primary w-100">Continue to checkout</button>
+        </form>
+      </div>
+      <div class="col-4">
+        <div>
+          <div class="border px-3 py-2">
+            <div class="d-flex justify-content-between">
+              <h5 class="m-0">Product Name</h5>
+              <div class="text-secondary">$12</div>
+            </div>
+            <div class="text-secondary">Briefs description</div>
+          </div>
+          <div class="border px-3 py-2">
+            <div class="d-flex justify-content-between">
+              <h5 class="m-0">Product Name</h5>
+              <div class="text-secondary">$12</div>
+            </div>
+            <div class="text-secondary">Briefs description</div>
+          </div>
+          <div class="border px-3 py-2">
+            <div class="d-flex justify-content-between">
+              <h5 class="m-0">Product Name</h5>
+              <div class="text-secondary">$12</div>
+            </div>
+            <div class="text-secondary">Briefs description</div>
+          </div>
+          <div class="border px-3 py-2">
+            <div class="d-flex justify-content-between">
+              <h5 class="m-0">Product Name</h5>
+              <div class="text-secondary">$12</div>
+            </div>
+            <div class="text-secondary">Briefs description</div>
+          </div>
+          <div class="border px-3 py-2 ">
+            <div class="d-flex justify-content-between">
+              <h5 class="m-0 text-success">Promo Code</h5>
+              <div class="text-success">$12</div>
+            </div>
+            <div class="text-success">Briefs description</div>
+          </div>
+          <div class="border px-3 py-2">
+            <div class="d-flex justify-content-between">
+              <h5 class="m-0">Total(USD)</h5>
+              <div class="text-secondary">$12</div>
+            </div>
+          </div>
+        </div>
+        <div class="border p-2 mt-3">
+          <div class="form-inline flex-nowrap w-100">
+            <input
+              type="text"
+              class="form-control w-100"
+              id="input"
+              placeholder="Promo Code"
+            />
+            <button class="btn btn-secondary">
+              Redeem
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column align-items-center my-5">
+      <div><i class="fa fa-copyright"></i> 2017-2019 Company Name</div>
+      <div class="d-flex">
+        <div class="text-primary">Privacy</div>
+        <div class="text-primary">Terms</div>
+        <div class="text-primary">Support</div>
+      </div>
+    </div>
+  </div>
+</div>

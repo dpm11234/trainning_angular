@@ -1,0 +1,27 @@
+<app-form [inputBill]="inputBill" (submitForm)="onSubmitForm($event)" ></app-form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bill of bills; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ bill.firstName + ' ' + bill.lastName }}</td>
+      <td>{{ bill.username }}</td>
+      <td>{{ bill.email }}</td>
+      <td>{{ bill.address }}</td>
+      <td>
+        <button class="btn btn-warning mr-3" (click)="editBill(bill, i)" >Edit</button>
+        <button class="btn btn-danger" (click)="removeBill(i)">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
